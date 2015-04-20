@@ -31,6 +31,11 @@ namespace DiscourseDotNet
         public TopicListRoot GetNewTopics()
         {
             return _requestManager.MakeServerRequest<TopicListRoot>("/new.json", HttpVerb.Get);
-        } 
+        }
+
+        public TopicListRoot GetTopTopics()
+        {
+            return _requestManager.MakeServerRequest<TopicListRoot>("/top.json", HttpVerb.Get);
+        }
     }
 }
