@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="DiscourseApi.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="Extensions\WebExtensions.cs" />
     <Compile Include="Models\APIRequest.cs" />
     <Compile Include="DiscourseException.cs" />
     <Compile Include="Models\Topics\Poster.cs" />
