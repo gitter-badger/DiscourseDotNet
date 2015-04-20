@@ -1,12 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DiscourseDotNet.Models.Topics;
 
 namespace DiscourseDotNet
 {
-    class DiscourseApi
+    public class DiscourseApi
     {
+        private static DiscourseApi _instance;
+
+        private DiscourseApi(string rootDomain, string apiKey)
+        {
+            RequestManager.RootDomain = rootDomain;
+            RequestManager.ApiKey = apiKey;
+        }
+
+        public static DiscourseApi GetInstance(string rootDomain, string apiKey)
+        {
+            if (_instance == null || RequestManager.RootDomain != rootDomain ||
+                RequestManager.ApiKey != apiKey)
+            {
+                _instance = new DiscourseApi(rootDomain, apiKey);
+            }
+            return _instance;
+        }
+
+        public TopicListRoot GetLatestTopics()
+        {
+            return RequestManager.MakeServerRequest<TopicListRoot>("/latest.json", HttpVerb.Get);
+        }
     }
 }

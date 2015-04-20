@@ -1,43 +1,36 @@
 ﻿using System;
+using System.Collections.Specialized;
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
+using DiscourseDotNet.Models;
 using Newtonsoft.Json;
 
 namespace DiscourseDotNet
 {
-    internal class RequestManager
+    internal static class RequestManager
     {
-        private static RequestManager _instance;
         public static string RootDomain;
         public static string ApiKey;
 
-        private RequestManager(string rootDomain, string apiKey)
+        public static T MakeServerRequest<T>(string endpoint, HttpVerb method, string username = "system",
+            NameValueCollection parameters = null, APIRequest body = null, bool useHttps = false)
         {
-            RootDomain = rootDomain;
-            ApiKey = apiKey;
-        }
+            if (parameters == null) parameters = new NameValueCollection();
+            parameters["api_key"] = ApiKey;
+            parameters["api_username"] = username;
 
-        public static RequestManager GetInstance(string rootDomain, string apiKey)
-        {
-            if (_instance == null || RootDomain != rootDomain || ApiKey != apiKey)
-            {
-                _instance = new RequestManager(rootDomain, apiKey);
-            }
-            return _instance;
-        }
-
-        public T MakeServerRequest<T>(string endpoint, HttpVerb method, string username,
-            APIRequest body = null, bool useHttps = false)
-        {
-            var url = (useHttps ? Uri.UriSchemeHttps : Uri.UriSchemeHttp) + Uri.SchemeDelimiter + RootDomain + endpoint;
+            var url =
+                new Uri((useHttps ? Uri.UriSchemeHttps : Uri.UriSchemeHttp) + Uri.SchemeDelimiter + RootDomain +
+                        endpoint).AttachParameters(parameters);
             var payload = body == null ? null : body.ToString();
             var methodString = method.ToString().ToUpper();
+            var response = string.Empty;
             using (var client = new WebClient())
             {
                 client.Headers["Content-Type"] = "application/json";
                 try
                 {
-                    string response;
                     switch (method)
                     {
                         case HttpVerb.Post:
@@ -49,27 +42,34 @@ namespace DiscourseDotNet
                             response = client.DownloadString(url);
                             break;
                     }
-                    return JsonConvert.DeserializeObject<T>(response);
                 }
                 catch (WebException ex)
                 {
                     HandleException(ex);
                 }
             }
+            return JsonConvert.DeserializeObject<T>(response);
         }
 
-        public async Task<T> MakeServerRequestAsync<T>(string endpoint, HttpVerb method, string username,
-            APIRequest body = null, bool useHttps = false)
+        public static async Task<T> MakeServerRequestAsync<T>(string endpoint, HttpVerb method,
+            string username = "system",
+            NameValueCollection parameters = null, APIRequest body = null, bool useHttps = false)
         {
-            var url = (useHttps ? Uri.UriSchemeHttps : Uri.UriSchemeHttp) + Uri.SchemeDelimiter + RootDomain + endpoint;
+            if (parameters == null) parameters = new NameValueCollection();
+            parameters["api_key"] = ApiKey;
+            parameters["api_username"] = username;
+
+            var url =
+                new Uri((useHttps ? Uri.UriSchemeHttps : Uri.UriSchemeHttp) + Uri.SchemeDelimiter + RootDomain +
+                        endpoint).AttachParameters(parameters);
             var payload = body == null ? null : body.ToString();
             var methodString = method.ToString().ToUpper();
+            var response = string.Empty;
             using (var client = new WebClient())
             {
                 client.Headers["Content-Type"] = "application/json";
                 try
                 {
-                    string response;
                     switch (method)
                     {
                         case HttpVerb.Post:
@@ -81,16 +81,28 @@ namespace DiscourseDotNet
                             response = await client.DownloadStringTaskAsync(url);
                             break;
                     }
-                    return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<T>(response));
                 }
                 catch (WebException ex)
                 {
                     HandleException(ex);
                 }
             }
+            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<T>(response));
         }
 
-        private void HandleException(WebException ex)
+        private static Uri AttachParameters(this Uri uri, NameValueCollection parameters)
+        {
+            var stringBuilder = new StringBuilder();
+            var str = "?";
+            for (var index = 0; index < parameters.Count; ++index)
+            {
+                stringBuilder.Append(str + parameters.AllKeys[index] + "=" + parameters[index]);
+                str = "&";
+            }
+            return new Uri(uri + stringBuilder.ToString());
+        }
+
+        private static void HandleException(WebException ex)
         {
             HttpWebResponse response;
             try
