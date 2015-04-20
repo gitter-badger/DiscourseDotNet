@@ -9,7 +9,6 @@ namespace DiscourseDotNet.Tests
         [TestMethod]
         public void GetLatestTopicTest()
         {
-       
         }
     }
 }

@@ -8,12 +8,29 @@ using Newtonsoft.Json;
 
 namespace DiscourseDotNet
 {
-    internal static class RequestManager
+    internal class RequestManager
     {
-        public static string RootDomain;
-        public static string ApiKey;
+        public string RootDomain;
+        public string ApiKey;
+        private static RequestManager _requestManager;
 
-        public static T MakeServerRequest<T>(string endpoint, HttpVerb method, string username = "system",
+        private RequestManager(string rootDomain, string apiKey)
+        {
+            RootDomain = rootDomain;
+            ApiKey = apiKey;
+        }
+
+        public static RequestManager GetInstance(string rootDomain, string apiKey)
+        {
+            if (_requestManager == null || _requestManager.RootDomain != rootDomain || _requestManager.ApiKey != apiKey)
+            {
+                _requestManager = new RequestManager(rootDomain, apiKey);
+            }
+
+            return _requestManager;
+        }
+
+        public T MakeServerRequest<T>(string endpoint, HttpVerb method, string username = "system",
             NameValueCollection parameters = null, APIRequest body = null, bool useHttps = false)
         {
             if (parameters == null) parameters = new NameValueCollection();
@@ -51,7 +68,7 @@ namespace DiscourseDotNet
             return JsonConvert.DeserializeObject<T>(response);
         }
 
-        public static async Task<T> MakeServerRequestAsync<T>(string endpoint, HttpVerb method,
+        public async Task<T> MakeServerRequestAsync<T>(string endpoint, HttpVerb method,
             string username = "system",
             NameValueCollection parameters = null, APIRequest body = null, bool useHttps = false)
         {
