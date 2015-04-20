@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace DiscourseDotNet.Models.Topics
 {
+    [Serializable]
     public class TopicList
     {
         [JsonProperty("can_create_topic")]

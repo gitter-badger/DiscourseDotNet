@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 
 namespace DiscourseDotNet.Models.Topics
 {
+    [Serializable]
     public class Topic
     {
         [JsonProperty("id")]

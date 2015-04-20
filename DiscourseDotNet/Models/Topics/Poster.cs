@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 
 namespace DiscourseDotNet.Models.Topics
 {
+    [Serializable]
     public class Poster
     {
         [JsonProperty("extras")]
