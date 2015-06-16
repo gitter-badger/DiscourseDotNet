@@ -1,10 +1,10 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace DiscourseDotNet.Models.Topics
+namespace DiscourseDotNet.Response.User
 {
     [Serializable]
-    public class User
+    public class UserBasic
     {
         [JsonProperty("id")]
         public int UserID { get; set; }

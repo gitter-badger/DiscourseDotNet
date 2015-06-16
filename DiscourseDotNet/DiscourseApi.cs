@@ -1,5 +1,4 @@
-﻿using System;
-using DiscourseDotNet.Models.Topics;
+﻿using DiscourseDotNet.Response.Topics;
 
 namespace DiscourseDotNet
 {

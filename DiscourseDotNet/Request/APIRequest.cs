@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace DiscourseDotNet.Models
+namespace DiscourseDotNet.Request
 {
     internal abstract class APIRequest
     {

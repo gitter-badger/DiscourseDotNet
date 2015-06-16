@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace DiscourseDotNet.Models.Topics
+namespace DiscourseDotNet.Data.Topics
 {
     [Serializable]
     public class Poster

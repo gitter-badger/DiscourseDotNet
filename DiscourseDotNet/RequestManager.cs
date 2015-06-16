@@ -3,22 +3,24 @@ using System.Collections.Specialized;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using DiscourseDotNet.Extensions;
-using DiscourseDotNet.Models;
+using DiscourseDotNet.Request;
 using Newtonsoft.Json;
+using RestSharp;
 
 namespace DiscourseDotNet
 {
     internal class RequestManager
     {
-        public string RootDomain;
-        public string ApiKey;
         private static RequestManager _requestManager;
+        private static RestClient _webClient;
+        public readonly string ApiKey;
+        public readonly string RootDomain;
 
         private RequestManager(string rootDomain, string apiKey)
         {
             RootDomain = rootDomain;
             ApiKey = apiKey;
+            _webClient = new RestClient(rootDomain);
         }
 
         public static RequestManager GetInstance(string rootDomain, string apiKey)
@@ -29,6 +31,30 @@ namespace DiscourseDotNet
             }
 
             return _requestManager;
+        }
+
+        public T ExecuteRequest<T>(string endpoint, Method method, bool requireAuthentication = false,
+            string username = "system", NameValueCollection parameters = null, APIRequest body = null)
+        {
+            if (parameters == null) parameters = new NameValueCollection();
+            if (requireAuthentication)
+            {
+                parameters["api_key"] = ApiKey;
+                parameters["api_username"] = username;
+            }
+            
+        }
+
+        public static Uri AttachParameters(this Uri uri, NameValueCollection parameters)
+        {
+            var stringBuilder = new StringBuilder();
+            var str = "?";
+            for (var index = 0; index < parameters.Count; ++index)
+            {
+                stringBuilder.Append(str + parameters.AllKeys[index] + "=" + parameters[index]);
+                str = "&";
+            }
+            return new Uri(uri + stringBuilder.ToString());
         }
 
         public T MakeServerRequest<T>(string endpoint, HttpVerb method, string username = "system",
@@ -107,8 +133,6 @@ namespace DiscourseDotNet
             }
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<T>(response));
         }
-
-        
 
         private static void HandleException(WebException ex)
         {

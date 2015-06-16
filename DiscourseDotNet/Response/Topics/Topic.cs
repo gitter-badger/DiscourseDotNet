@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace DiscourseDotNet.Models.Topics
+namespace DiscourseDotNet.Response.Topics
 {
     [Serializable]
     public class Topic
