@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace DiscourseDotNet.Response.LatestEndpoint
+namespace DiscourseDotNet.Response.Models
 {
     [Serializable]
     public class Poster
@@ -13,6 +13,6 @@ namespace DiscourseDotNet.Response.LatestEndpoint
         public string Description { get; set; }
 
         [JsonProperty("user_id")]
-        public int UserID { get; set; }
+        public int UserId { get; set; }
     }
 }

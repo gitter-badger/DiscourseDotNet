@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace DiscourseDotNet.Response.LatestEndpoint
+namespace DiscourseDotNet.Response.Models
 {
     [Serializable]
     public class Topic
     {
         [JsonProperty("id")]
-        public int TopicID { get; set; }
+        public int Id { get; set; }
 
         [JsonProperty("title")]
         public string Title { get; set; }
@@ -20,7 +20,7 @@ namespace DiscourseDotNet.Response.LatestEndpoint
         public string Slug { get; set; }
 
         [JsonProperty("posts_count")]
-        public int PostCount { get; set; }
+        public int PostsCount { get; set; }
 
         [JsonProperty("reply_count")]
         public int ReplyCount { get; set; }
@@ -50,7 +50,7 @@ namespace DiscourseDotNet.Response.LatestEndpoint
         public bool Pinned { get; set; }
 
         [JsonProperty("unpinned")]
-        public object Unpinned { get; set; }
+        public bool? Unpinned { get; set; }
 
         [JsonProperty("excerpt")]
         public string Excerpt { get; set; }
@@ -65,10 +65,10 @@ namespace DiscourseDotNet.Response.LatestEndpoint
         public bool Archived { get; set; }
 
         [JsonProperty("bookmarked")]
-        public object Bookmarked { get; set; }
+        public bool? Bookmarked { get; set; }
 
         [JsonProperty("liked")]
-        public object Liked { get; set; }
+        public bool? Liked { get; set; }
 
         [JsonProperty("views")]
         public int Views { get; set; }
@@ -85,13 +85,16 @@ namespace DiscourseDotNet.Response.LatestEndpoint
         [JsonProperty("last_poster_username")]
         public string LastPosterUsername { get; set; }
 
+        [JsonProperty("last_poster")]
+        public LastPoster LastPoster { get; set; }
+
         [JsonProperty("category_id")]
-        public int CategoryID { get; set; }
+        public int CategoryId { get; set; }
 
         [JsonProperty("pinned_globally")]
         public bool PinnedGlobally { get; set; }
 
         [JsonProperty("posters")]
-        public IList<Poster> Posters { get; set; }
+        public List<Poster> Posters { get; set; }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using DiscourseDotNet.Request;
-using DiscourseDotNet.Response.LatestEndpoint;
 using RestSharp;
 
 namespace DiscourseDotNet

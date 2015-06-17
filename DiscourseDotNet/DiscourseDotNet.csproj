@@ -51,15 +51,22 @@
   <ItemGroup>
     <Compile Include="DiscourseApi.cs" />
     <Compile Include="DiscourseApiStatic.cs" />
-    <Compile Include="Extensions\LatestTopicsExtensions.cs" />
+    <Compile Include="Extensions\Categories.cs" />
+    <Compile Include="Extensions\Topics.cs" />
     <Compile Include="Request\APIRequest.cs" />
     <Compile Include="DiscourseException.cs" />
-    <Compile Include="Response\LatestEndpoint\Poster.cs" />
-    <Compile Include="Response\LatestEndpoint\Topic.cs" />
-    <Compile Include="Response\LatestEndpoint\TopicList.cs" />
-    <Compile Include="Response\LatestEndpoint\Latest.cs" />
+    <Compile Include="Response\Categories.cs" />
+    <Compile Include="Response\Models\Category.cs" />
+    <Compile Include="Response\Models\CategoryList.cs" />
+    <Compile Include="Response\CategoryTopics.cs" />
+    <Compile Include="Response\Models\FeaturedUser.cs" />
+    <Compile Include="Response\Models\LastPoster.cs" />
+    <Compile Include="Response\Models\Poster.cs" />
+    <Compile Include="Response\Models\Topic.cs" />
+    <Compile Include="Response\Models\TopicList.cs" />
+    <Compile Include="Response\LatestTopics.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Response\LatestEndpoint\TopicUser.cs" />
+    <Compile Include="Response\Models\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

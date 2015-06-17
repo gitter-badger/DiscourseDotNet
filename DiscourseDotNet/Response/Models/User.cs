@@ -1,19 +1,19 @@
 using System;
 using Newtonsoft.Json;
 
-namespace DiscourseDotNet.Response.LatestEndpoint
+namespace DiscourseDotNet.Response.Models
 {
     [Serializable]
-    public class TopicUser
+    public class User
     {
         [JsonProperty("id")]
-        public int UserID { get; set; }
+        public int Id { get; set; }
 
         [JsonProperty("username")]
         public string Username { get; set; }
 
         [JsonProperty("uploaded_avatar_id")]
-        public int? AvatarID { get; set; }
+        public int? UploadedAvatarId { get; set; }
 
         [JsonProperty("avatar_template")]
         public string AvatarTemplate { get; set; }

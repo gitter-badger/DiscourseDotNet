@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace DiscourseDotNet.Response.LatestEndpoint
+namespace DiscourseDotNet.Response.Models
 {
     [Serializable]
     public class TopicList
@@ -26,6 +26,6 @@ namespace DiscourseDotNet.Response.LatestEndpoint
         public int PerPage { get; set; }
 
         [JsonProperty("topics")]
-        public IList<Topic> Topics { get; set; }
+        public List<Topic> Topics { get; set; }
     }
 }
