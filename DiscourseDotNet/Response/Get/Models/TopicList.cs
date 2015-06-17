@@ -20,7 +20,7 @@ namespace DiscourseDotNet.Response.Models
         public string DraftKey { get; set; }
 
         [JsonProperty("draft_sequence")]
-        public object DraftSequence { get; set; }
+        public int? DraftSequence { get; set; }
 
         [JsonProperty("per_page")]
         public int PerPage { get; set; }

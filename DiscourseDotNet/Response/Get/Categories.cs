@@ -2,7 +2,7 @@
 using DiscourseDotNet.Response.Models;
 using Newtonsoft.Json;
 
-namespace DiscourseDotNet.Response
+namespace DiscourseDotNet.Response.Get
 {
     public class Categories
     {

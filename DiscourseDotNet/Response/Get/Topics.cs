@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace DiscourseDotNet.Response
 {
-    public class CategoryTopics
+    public class Topics
     {
         [JsonProperty("users")]
         public List<User> Users { get; set; }
