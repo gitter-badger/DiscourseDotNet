@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace DiscourseDotNet.Data.Topics
+namespace DiscourseDotNet.Response.LatestEndpoint
 {
     [Serializable]
-    public class TopicListRoot
+    public class Latest
     {
         [JsonProperty("users")]
-        public List<User> Users { get; set; }
+        public IList<TopicUser> Users { get; set; }
 
         [JsonProperty("topic_list")]
         public TopicList TopicList { get; set; }

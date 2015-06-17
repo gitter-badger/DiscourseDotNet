@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace DiscourseDotNet.Response.Topics
+namespace DiscourseDotNet.Response.LatestEndpoint
 {
     [Serializable]
     public class Topic
@@ -46,20 +46,14 @@ namespace DiscourseDotNet.Response.Topics
         [JsonProperty("unseen")]
         public bool Unseen { get; set; }
 
-        [JsonProperty("last_read_post_number")]
-        public int LastReadPostNumber { get; set; }
-
-        [JsonProperty("unread")]
-        public int Unread { get; set; }
-
-        [JsonProperty("new_posts")]
-        public int NewPosts { get; set; }
-
         [JsonProperty("pinned")]
         public bool Pinned { get; set; }
 
         [JsonProperty("unpinned")]
-        public bool? Unpinned { get; set; }
+        public object Unpinned { get; set; }
+
+        [JsonProperty("excerpt")]
+        public string Excerpt { get; set; }
 
         [JsonProperty("visible")]
         public bool Visible { get; set; }
@@ -70,14 +64,11 @@ namespace DiscourseDotNet.Response.Topics
         [JsonProperty("archived")]
         public bool Archived { get; set; }
 
-        [JsonProperty("notification_level")]
-        public int NotificationLevel { get; set; }
-
         [JsonProperty("bookmarked")]
-        public bool? Bookmarked { get; set; }
+        public object Bookmarked { get; set; }
 
         [JsonProperty("liked")]
-        public bool? Liked { get; set; }
+        public object Liked { get; set; }
 
         [JsonProperty("views")]
         public int Views { get; set; }
@@ -101,9 +92,6 @@ namespace DiscourseDotNet.Response.Topics
         public bool PinnedGlobally { get; set; }
 
         [JsonProperty("posters")]
-        public List<Poster> Posters { get; set; }
-
-        [JsonProperty("excerpt")]
-        public string Excerpt { get; set; }
+        public IList<Poster> Posters { get; set; }
     }
 }

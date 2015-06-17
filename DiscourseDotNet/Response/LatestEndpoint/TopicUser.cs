@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using Newtonsoft.Json;
 
-namespace DiscourseDotNet.Response.User
+namespace DiscourseDotNet.Response.LatestEndpoint
 {
     [Serializable]
-    public class UserBasic
+    public class TopicUser
     {
         [JsonProperty("id")]
         public int UserID { get; set; }

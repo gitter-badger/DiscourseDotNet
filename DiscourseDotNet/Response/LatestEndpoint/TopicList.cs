@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace DiscourseDotNet.Data.Topics
+namespace DiscourseDotNet.Response.LatestEndpoint
 {
     [Serializable]
     public class TopicList
     {
         [JsonProperty("can_create_topic")]
         public bool CanCreateTopic { get; set; }
+
+        [JsonProperty("more_topics_url")]
+        public string MoreTopicsURL { get; set; }
 
         [JsonProperty("draft")]
         public object Draft { get; set; }
@@ -17,12 +20,12 @@ namespace DiscourseDotNet.Data.Topics
         public string DraftKey { get; set; }
 
         [JsonProperty("draft_sequence")]
-        public int DraftSequence { get; set; }
+        public object DraftSequence { get; set; }
 
         [JsonProperty("per_page")]
         public int PerPage { get; set; }
 
         [JsonProperty("topics")]
-        public List<Topic> Topics { get; set; }
+        public IList<Topic> Topics { get; set; }
     }
 }

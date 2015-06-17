@@ -50,18 +50,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DiscourseApi.cs" />
-    <Compile Include="Enums.cs" />
-    <Compile Include="Extensions\TopicsExtension.cs" />
-    <Compile Include="Extensions\WebExtensions.cs" />
-    <Compile Include="Data\APIRequest.cs" />
+    <Compile Include="DiscourseApiStatic.cs" />
+    <Compile Include="Extensions\LatestTopicsExtensions.cs" />
+    <Compile Include="Request\APIRequest.cs" />
     <Compile Include="DiscourseException.cs" />
-    <Compile Include="Data\Topics\Poster.cs" />
-    <Compile Include="Data\Topics\Topic.cs" />
-    <Compile Include="Data\Topics\TopicList.cs" />
-    <Compile Include="Data\Topics\TopicListRoot.cs" />
-    <Compile Include="Data\Topics\User.cs" />
+    <Compile Include="Response\LatestEndpoint\Poster.cs" />
+    <Compile Include="Response\LatestEndpoint\Topic.cs" />
+    <Compile Include="Response\LatestEndpoint\TopicList.cs" />
+    <Compile Include="Response\LatestEndpoint\Latest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RequestManager.cs" />
+    <Compile Include="Response\LatestEndpoint\TopicUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,40 +1,45 @@
-﻿using DiscourseDotNet.Response.Topics;
+﻿using System.Collections.Generic;
+using DiscourseDotNet.Request;
+using DiscourseDotNet.Response.LatestEndpoint;
+using RestSharp;
 
 namespace DiscourseDotNet
 {
-    public class DiscourseApi
+    public partial class DiscourseApi
     {
-        private static DiscourseApi _instance;
-        private static RequestManager _requestManager;
+        public readonly string ApiKey;
+        public readonly string BaseUrl;
 
-        private DiscourseApi(string rootDomain, string apiKey)
+        private DiscourseApi(string baseUrl, string apiKey)
         {
-            _requestManager = RequestManager.GetInstance(rootDomain, apiKey);
+            BaseUrl = baseUrl;
+            ApiKey = apiKey;
         }
 
-        public static DiscourseApi GetInstance(string rootDomain, string apiKey)
+        public T ExecuteRequest<T>(string endpoint, Method method, bool requireAuthentication = false,
+            string username = "system", Dictionary<string, string> parameters = null, APIRequest body = null) where T : new()
         {
-            if (_instance == null || _requestManager.RootDomain != rootDomain ||
-                _requestManager.ApiKey != apiKey)
+            var client = new RestClient(BaseUrl);
+            var request = new RestRequest(endpoint) {Method = method};
+            if (parameters == null) parameters = new Dictionary<string, string>();
+            if (requireAuthentication)
             {
-                _instance = new DiscourseApi(rootDomain, apiKey);
+                request.AddQueryParameter("api_key", ApiKey);
+                request.AddQueryParameter("api_username", username);
             }
-            return _instance;
-        }
+            foreach (var parameter in parameters)
+            {
+                request.AddQueryParameter(parameter.Key, parameter.Value);
+            }
+            if (body != null) request.AddBody(body);
 
-        public TopicListRoot GetLatestTopics()
-        {
-            return _requestManager.MakeServerRequest<TopicListRoot>("/latest.json", HttpVerb.Get);
-        }
+            var response = client.Execute<T>(request);
 
-        public TopicListRoot GetNewTopics()
-        {
-            return _requestManager.MakeServerRequest<TopicListRoot>("/new.json", HttpVerb.Get);
-        }
-
-        public TopicListRoot GetTopTopics()
-        {
-            return _requestManager.MakeServerRequest<TopicListRoot>("/top.json", HttpVerb.Get);
+            if (response.ErrorException != null)
+            {
+                throw new DiscourseException("There was an Error retrieving a response from Discourse, Please check inner details", response.ErrorException);
+            }
+            return response.Data;
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace DiscourseDotNet.Request
 {
-    internal abstract class APIRequest
+    public abstract class APIRequest
     {
         public override string ToString()
         {
