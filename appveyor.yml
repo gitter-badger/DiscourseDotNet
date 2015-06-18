@@ -25,6 +25,6 @@ notifications:
 test:
   assemblies:
      - DiscourseDotNet.Tests.dll
-#  categories:
-#    only:
-#      - Offline
+  categories:
+    only:
+      - Offline
