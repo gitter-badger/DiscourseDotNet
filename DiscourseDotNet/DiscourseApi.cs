@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Net;
 using DiscourseDotNet.Request;
 using RestSharp;
 
@@ -59,7 +61,14 @@ namespace DiscourseDotNet
             {
                 throw new DiscourseException(
                     "There was an Error retrieving a response from Discourse, Please check inner details",
+                    response.StatusCode,
                     response.ErrorException);
+            }
+            if (response.StatusCode != HttpStatusCode.OK && response.StatusCode != HttpStatusCode.Created)
+            {
+                throw new DiscourseException(
+                    String.Format("Server returned a {0} ({1}) response", response.StatusCode, (int) response.StatusCode),
+                    response.StatusCode);
             }
             return response.Data;
         }

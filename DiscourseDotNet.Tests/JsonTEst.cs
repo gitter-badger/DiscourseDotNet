@@ -10,7 +10,7 @@ namespace DiscourseDotNet.Tests
     [TestClass]
     public class JsonTest
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Offline")]
         public void TestCategory()
         {
             var category = new NewCategory
