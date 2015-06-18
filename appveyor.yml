@@ -1,0 +1,17 @@
+##  Configuration for DiscourseDotNet ##
+
+version: 0.2.{build}
+
+branches:
+  only:
+    - master
+    - development
+
+os: Windows Server 2012
+
+before_build:
+  - nuget restore
+
+test:
+  assemblies:
+     - DiscourseDotNet.Tests.dll
