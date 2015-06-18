@@ -11,7 +11,7 @@ os: Windows Server 2012
 
 environment:
   DiscourseApiKey:
-    secure: dm10dZqq8Dsx7bl1zmGw2BSBpugrYdbhVP5B65Eepio7r7omzRfAYhd6DcKKlGrNDzGltbdeRQSHuNglTLg0EayjRN7Otd2ZXo5Nk97FPiY
+    secure: dm10dZqq8Dsx7bl1zmGw2BSBpugrYdbhVP5B65Eepio7r7omzRfAYhd6DcKKlGrNDzGltbdeRQSHuNglTLg0EayjRN7Otd2ZXo5Nk97FPiY=
 
 before_build:
   - nuget restore
