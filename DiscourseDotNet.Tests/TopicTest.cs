@@ -1,4 +1,5 @@
-﻿using DiscourseDotNet.Extensions;
+﻿using System;
+using DiscourseDotNet.Extensions;
 using DiscourseDotNet.Request;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -64,11 +65,11 @@ namespace DiscourseDotNet.Tests
                 "2dc502bac050595af6ba30f363e84bb9285c0d205622939c82ac03a4f9c475ea");
             var category = new NewCategory
             {
-                Name = "API TESTING NEW CATEGORY 34",
-                Color = "FFFFFF",
-                TextColor = "000000"
+                Name = "API Test " + Guid.NewGuid(),
+                Color = "FFA500",
+                TextColor = "FFFFFF"
             };
-            var response = api.CreateCategory(category, "ChaoticLoki");
+            var response = api.CreateCategory(category);
             Assert.IsNotNull(response);
         }
 
