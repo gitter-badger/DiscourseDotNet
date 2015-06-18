@@ -32,13 +32,13 @@ namespace DiscourseDotNet.Request
 
         public NewCategory()
         {
-            Permissions = new Dictionary<string, Permission>();
+            Permissions = new Dictionary<string, Permission> {{"everyone", Permission.CreateReplySee}};
         }
 
-        public void AddPermission(string name, Permission permissionLevel)
+        public void AddOrUpdatePermission(string name, Permission permissionLevel)
         {
             if(Permissions == null) Permissions = new Dictionary<string, Permission>();
-            Permissions.Add(name, permissionLevel);
+            Permissions[name] = permissionLevel;
         }
 
         public bool ShouldSerializeParentCategoryID()

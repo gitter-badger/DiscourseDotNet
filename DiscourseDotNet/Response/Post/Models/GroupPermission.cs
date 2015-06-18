@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace DiscourseDotNet.Response.Post
+namespace DiscourseDotNet.Response.Post.Models
 {
     public class GroupPermission
     {

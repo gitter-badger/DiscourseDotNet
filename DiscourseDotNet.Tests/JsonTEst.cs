@@ -23,8 +23,8 @@ namespace DiscourseDotNet.Tests
                 TextColor = "ffff"
             };
 
-            category.AddPermission("everyone", Permission.CreateReplySee);
-            category.AddPermission("trust_level_0", Permission.See);
+            category.AddOrUpdatePermission("everyone", Permission.CreateReplySee);
+            category.AddOrUpdatePermission("trust_level_0", Permission.See);
 
             var actual = JsonConvert.SerializeObject(category);
             var expected =

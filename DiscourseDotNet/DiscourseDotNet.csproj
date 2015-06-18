@@ -50,6 +50,7 @@
     <Compile Include="Request\APIRequest.cs" />
     <Compile Include="DiscourseException.cs" />
     <Compile Include="Request\NewCategory.cs" />
+    <Compile Include="Request\NewTopic.cs" />
     <Compile Include="Response\Get\Categories.cs" />
     <Compile Include="Response\Get\Models\Category.cs" />
     <Compile Include="Response\Get\Models\CategoryList.cs" />
@@ -60,10 +61,14 @@
     <Compile Include="Response\Get\Models\TopicList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Response\Get\Models\User.cs" />
+    <Compile Include="Response\Get\SimilarTopic.cs" />
     <Compile Include="Response\Post\CreatedCategory.cs" />
+    <Compile Include="Response\Post\CreatedTopic.cs" />
+    <Compile Include="Response\Post\Models\ActionsSummary.cs" />
     <Compile Include="Response\Post\Models\Category.cs" />
     <Compile Include="Response\Post\Models\GroupPermission.cs" />
     <Compile Include="Response\Get\Topics.cs" />
+    <Compile Include="Response\Post\Models\CreatedPost.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

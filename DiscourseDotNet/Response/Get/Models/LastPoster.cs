@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace DiscourseDotNet.Response.Models
+namespace DiscourseDotNet.Response.Get.Models
 {
     public class LastPoster
     {

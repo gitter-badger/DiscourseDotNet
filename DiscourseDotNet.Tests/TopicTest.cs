@@ -64,11 +64,20 @@ namespace DiscourseDotNet.Tests
                 "2dc502bac050595af6ba30f363e84bb9285c0d205622939c82ac03a4f9c475ea");
             var category = new NewCategory
             {
-                Name = "API TESTING NEW CATEGORY 3",
+                Name = "API TESTING NEW CATEGORY 34",
                 Color = "FFFFFF",
                 TextColor = "000000"
             };
             var response = api.CreateCategory(category, "ChaoticLoki");
+            Assert.IsNotNull(response);
+        }
+
+        [TestMethod]
+        public void TestSmilarPosts()
+        {
+            var api = DiscourseApi.GetInstance("https://meta.discourse.org", "null");
+
+            var response = api.GetSimilarTopics("DiscourseApi", "Discourse Api post topic yes no, there");
             Assert.IsNotNull(response);
         }
     }

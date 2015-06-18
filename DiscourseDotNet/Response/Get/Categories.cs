@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using DiscourseDotNet.Response.Models;
+using DiscourseDotNet.Response.Get.Models;
 using Newtonsoft.Json;
 
 namespace DiscourseDotNet.Response.Get

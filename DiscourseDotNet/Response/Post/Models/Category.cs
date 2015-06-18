@@ -54,7 +54,7 @@ namespace DiscourseDotNet.Response.Post.Models
         public bool CanEdit { get; set; }
 
         [JsonProperty("available_groups")]
-        public IList<string> AvailableGroups { get; set; }
+        public List<string> AvailableGroups { get; set; }
 
         [JsonProperty("auto_close_hours")]
         public object AutoCloseHours { get; set; }

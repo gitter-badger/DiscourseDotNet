@@ -1,7 +1,7 @@
 using System;
 using Newtonsoft.Json;
 
-namespace DiscourseDotNet.Response.Models
+namespace DiscourseDotNet.Response.Get.Models
 {
     [Serializable]
     public class User
