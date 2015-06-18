@@ -1,6 +1,7 @@
 ﻿using System;
 using DiscourseDotNet.Extensions;
 using DiscourseDotNet.Request;
+using DiscourseDotNet.Response.Post;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DiscourseDotNet.Tests
@@ -63,10 +64,28 @@ namespace DiscourseDotNet.Tests
             {
                 Name = "API Test " + Guid.NewGuid(),
                 Color = "FFA500",
-                TextColor = "FFFFFF"
+                TextColor = "FFFFFF",
+                ParentCategoryID = 22
             };
             var response = api.CreateCategory(category);
             Assert.IsNotNull(response);
+        }
+
+        [TestMethod, TestCategory("Online")]
+        public void CreateNewTopic()
+        {
+            var api = DiscourseApi.GetInstance("http://discourse.logicpending.com", _apiKey);
+            var newTopic = new NewTopic
+            {
+                Content =
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut posuere eleifend nulla, vel interdum elit. Aenean auctor, libero in consectetur sollicitudin, dolor massa pharetra nulla, et mollis justo turpis nec tortor. Nullam lorem nunc, cursus ac pretium in, auctor eu nisi. Nullam quis lacus quam. Curabitur vel aliquet erat, sed vestibulum ante. Vivamus consequat lorem eget gravida gravida. Aenean quis arcu ut ligula facilisis aliquet. Vestibulum rutrum magna elit. Etiam sit amet malesuada quam, nec tempor mi. Nullam eu mauris dui. Sed at mi sit amet justo ultrices laoreet non eget urna. Proin felis ex, finibus et auctor a, rutrum nec elit.",
+                Title = "Testing Topic: " + Guid.NewGuid(),
+                CategoryID = 21
+            };
+            var response = api.PostNewTopic(newTopic);
+
+            Assert.IsNotNull(response);
+            Assert.IsTrue(response.Success);
         }
 
         [TestMethod, TestCategory("Online")]

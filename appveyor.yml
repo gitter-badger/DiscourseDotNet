@@ -1,6 +1,6 @@
 ##  Configuration for DiscourseDotNet ##
 
-version: 0.2.{build}
+version: 0.2.{build}-alpha
 
 branches:
   only:
@@ -19,6 +19,6 @@ before_build:
 test:
   assemblies:
      - DiscourseDotNet.Tests.dll
-  categories:
-    only:
-      - Offline
+#  categories:
+#    only:
+#      - Offline
