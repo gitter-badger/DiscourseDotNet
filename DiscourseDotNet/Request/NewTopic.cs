@@ -16,6 +16,9 @@ namespace DiscourseDotNet.Request
         [JsonProperty("category")]
         public int? CategoryID { get; set; }
 
+        [JsonProperty("topic_id")]
+        public int? TopicID { get; set; }
+
         [JsonProperty("is_warning")]
         public bool IsWarning { get; set; }
 
@@ -36,6 +39,11 @@ namespace DiscourseDotNet.Request
         public bool ShouldSerializeCategoryID()
         {
             return CategoryID.HasValue;
+        }
+
+        public bool ShouldSerializeTopicID()
+        {
+            return TopicID.HasValue;
         }
     }
 }
