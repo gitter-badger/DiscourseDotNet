@@ -10,12 +10,18 @@ namespace DiscourseDotNet.Tests
     public class TopicTests
     {
         private readonly string _apiKey = Environment.GetEnvironmentVariable("DiscourseApiKey");
+        private DiscourseApi _api;
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            _api = DiscourseApi.GetInstance("http://discourse.logicpending.com", _apiKey);
+        }
 
         [TestMethod, TestCategory("Online")]
         public void GetLatestTopicTest()
         {
-            var api = DiscourseApi.GetInstance("http://discourse.logicpending.com", _apiKey);
-            var response = api.GetLatestTopics();
+            var response = _api.GetLatestTopics();
 
             Assert.IsNotNull(response);
         }
@@ -23,8 +29,7 @@ namespace DiscourseDotNet.Tests
         [TestMethod, TestCategory("Online")]
         public void GetCategories()
         {
-            var api = DiscourseApi.GetInstance("http://discourse.logicpending.com", _apiKey);
-            var response = api.GetCategories();
+            var response = _api.GetCategories();
 
             Assert.IsNotNull(response);
         }
@@ -32,8 +37,7 @@ namespace DiscourseDotNet.Tests
         [TestMethod, TestCategory("Online")]
         public void GetCategoryTopics()
         {
-            var api = DiscourseApi.GetInstance("http://discourse.logicpending.com", _apiKey);
-            var response = api.GetCategoryTopics(2);
+            var response = _api.GetCategoryTopics(2);
 
             Assert.IsNotNull(response);
         }
@@ -41,8 +45,7 @@ namespace DiscourseDotNet.Tests
         [TestMethod, TestCategory("Online")]
         public void GetNewCategoryTopics()
         {
-            var api = DiscourseApi.GetInstance("http://discourse.logicpending.com", _apiKey);
-            var response = api.GetNewCategoryTopics(5, "ChaoticLoki");
+            var response = _api.GetNewCategoryTopics(5, "ChaoticLoki");
 
             Assert.IsNotNull(response);
         }
@@ -50,8 +53,7 @@ namespace DiscourseDotNet.Tests
         [TestMethod, TestCategory("Online")]
         public void GetNewTopics()
         {
-            var api = DiscourseApi.GetInstance("http://discourse.logicpending.com", _apiKey);
-            var response = api.GetNewTopics("ChaoticLoki");
+            var response = _api.GetNewTopics("ChaoticLoki");
 
             Assert.IsNotNull(response);
         }
@@ -59,7 +61,6 @@ namespace DiscourseDotNet.Tests
         [TestMethod, TestCategory("Online")]
         public void CreateNewCategory()
         {
-            var api = DiscourseApi.GetInstance("http://discourse.logicpending.com", _apiKey);
             var category = new NewCategory
             {
                 Name = "API Test " + Guid.NewGuid(),
@@ -67,14 +68,13 @@ namespace DiscourseDotNet.Tests
                 TextColor = "FFFFFF",
                 ParentCategoryID = 22
             };
-            var response = api.CreateCategory(category);
+            var response = _api.CreateCategory(category);
             Assert.IsNotNull(response);
         }
 
         [TestMethod, TestCategory("Online")]
         public void CreateNewTopic()
         {
-            var api = DiscourseApi.GetInstance("http://discourse.logicpending.com", _apiKey);
             var newTopic = new NewTopic
             {
                 Content =
@@ -82,7 +82,7 @@ namespace DiscourseDotNet.Tests
                 Title = "Testing Topic: " + Guid.NewGuid(),
                 CategoryID = 21
             };
-            var response = api.PostNewTopic(newTopic);
+            var response = _api.PostTopic(newTopic);
 
             Assert.IsNotNull(response);
             Assert.IsTrue(response.Success);
@@ -91,9 +91,7 @@ namespace DiscourseDotNet.Tests
         [TestMethod, TestCategory("Online")]
         public void TestSmilarPosts()
         {
-            var api = DiscourseApi.GetInstance("https://meta.discourse.org", "noKey");
-
-            var response = api.GetSimilarTopics("DiscourseApi", "Discourse Api post topic yes no, there");
+            var response = _api.GetSimilarTopics("DiscourseApi", "Discourse Api post topic yes no, there");
             Assert.IsNotNull(response);
         }
     }

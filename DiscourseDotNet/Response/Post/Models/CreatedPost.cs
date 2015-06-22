@@ -118,7 +118,7 @@ namespace DiscourseDotNet.Response.Post.Models
         public int TrustLevel { get; set; }
 
         [JsonProperty("deleted_at")]
-        public object DeletedAt { get; set; }
+        public DateTime? DeletedAt { get; set; }
 
         [JsonProperty("user_deleted")]
         public bool UserDeleted { get; set; }

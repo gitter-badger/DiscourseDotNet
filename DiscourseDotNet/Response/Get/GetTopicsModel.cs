@@ -4,10 +4,10 @@ using Newtonsoft.Json;
 
 namespace DiscourseDotNet.Response.Get
 {
-    public class Topics
+    public class GetTopicsModel
     {
         [JsonProperty("users")]
-        public List<User> Users { get; set; }
+        public List<BasicUserInfo> Users { get; set; }
 
         [JsonProperty("topic_list")]
         public TopicList TopicList { get; set; }

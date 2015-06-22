@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 
-namespace DiscourseDotNet.Response.Get
+namespace DiscourseDotNet.Response.Get.Models
 {
-    public class SimilarTopic
+    public class BasicTopicInfo
     {
         [JsonProperty("id")]
         public int Id { get; set; }

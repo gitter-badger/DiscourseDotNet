@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="DiscourseApi.cs" />
     <Compile Include="DiscourseApiStatic.cs" />
+    <Compile Include="Extensions\User.cs" />
     <Compile Include="Extensions\Categories.cs" />
     <Compile Include="Extensions\Default.cs" />
     <Compile Include="Extensions\Topics.cs" />
@@ -51,23 +52,30 @@
     <Compile Include="DiscourseException.cs" />
     <Compile Include="Request\NewCategory.cs" />
     <Compile Include="Request\NewTopic.cs" />
-    <Compile Include="Response\Get\Categories.cs" />
+    <Compile Include="Response\Get\GetCategoriesModel.cs" />
+    <Compile Include="Response\Get\GetUserModel.cs" />
+    <Compile Include="Response\Get\Models\Badge.cs" />
+    <Compile Include="Response\Get\Models\BadgeType.cs" />
+    <Compile Include="Response\Get\Models\BasicTopicInfo.cs" />
     <Compile Include="Response\Get\Models\Category.cs" />
     <Compile Include="Response\Get\Models\CategoryList.cs" />
     <Compile Include="Response\Get\Models\FeaturedUser.cs" />
     <Compile Include="Response\Get\Models\LastPoster.cs" />
     <Compile Include="Response\Get\Models\Poster.cs" />
+    <Compile Include="Response\Get\Models\Stat.cs" />
     <Compile Include="Response\Get\Models\Topic.cs" />
     <Compile Include="Response\Get\Models\TopicList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Response\Get\Models\BasicUserInfo.cs" />
     <Compile Include="Response\Get\Models\User.cs" />
-    <Compile Include="Response\Get\SimilarTopic.cs" />
+    <Compile Include="Response\Get\Models\UserBadge.cs" />
+    <Compile Include="Response\Get\SimilarTopicModel.cs" />
     <Compile Include="Response\Post\CreatedCategory.cs" />
     <Compile Include="Response\Post\CreatedTopic.cs" />
     <Compile Include="Response\Post\Models\ActionsSummary.cs" />
     <Compile Include="Response\Post\Models\Category.cs" />
     <Compile Include="Response\Post\Models\GroupPermission.cs" />
-    <Compile Include="Response\Get\Topics.cs" />
+    <Compile Include="Response\Get\GetTopicsModel.cs" />
     <Compile Include="Response\Post\Models\CreatedPost.cs" />
   </ItemGroup>
   <ItemGroup>
