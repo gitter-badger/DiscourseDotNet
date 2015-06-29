@@ -1,5 +1,6 @@
 ﻿using System;
 using DiscourseDotNet.Extensions;
+using DiscourseDotNet.Lib;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DiscourseDotNet.Tests
@@ -22,6 +23,13 @@ namespace DiscourseDotNet.Tests
             _api = DiscourseApi.GetInstance("https://meta.discourse.org", _apiKey);
             var result = _api.GetUser("chaoticloki");
             Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void TestUpdateEmail()
+        {
+            var result = _api.UpdateUserEmail("cliffordduke", "cliffordduke@gmail.com");
+            Assert.IsTrue(result == ResultState.Unchanged, String.Format("Actual result: {0}", result));
         }
     }
 }

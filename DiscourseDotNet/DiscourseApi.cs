@@ -55,8 +55,21 @@ namespace DiscourseDotNet
                 request.AddParameter("application/json", body, ParameterType.RequestBody);
             }
 
-            var response = client.Execute<T>(request);
+            if (typeof (T) == typeof (RestResponse))
+            {
+                var responseRaw = client.Execute(request);
+                CheckResponse(responseRaw);
+                return (T) responseRaw;
+            }
 
+
+            var response = client.Execute<T>(request);
+            CheckResponse(response);
+            return response.Data;
+        }
+
+        private static void CheckResponse(IRestResponse response)
+        {
             if (response.ErrorException != null)
             {
                 throw new DiscourseException(
@@ -64,13 +77,12 @@ namespace DiscourseDotNet
                     response.StatusCode,
                     response.ErrorException);
             }
-            if (response.StatusCode != HttpStatusCode.OK && response.StatusCode != HttpStatusCode.Created)
+            /*if (response.StatusCode != HttpStatusCode.OK && response.StatusCode != HttpStatusCode.Created)
             {
                 throw new DiscourseException(
                     String.Format("Server returned a {0} ({1}) response", response.StatusCode, (int) response.StatusCode),
                     response.StatusCode);
-            }
-            return response.Data;
+            }*/
         }
     }
 }

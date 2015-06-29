@@ -48,10 +48,12 @@
     <Compile Include="Extensions\Default.cs" />
     <Compile Include="Extensions\Topics.cs" />
     <Compile Include="Lib\PermissionEnums.cs" />
+    <Compile Include="Lib\ResultState.cs" />
     <Compile Include="Request\APIRequest.cs" />
     <Compile Include="DiscourseException.cs" />
     <Compile Include="Request\NewCategory.cs" />
     <Compile Include="Request\NewTopic.cs" />
+    <Compile Include="Request\UpdateEmail.cs" />
     <Compile Include="Response\Get\GetCategoriesModel.cs" />
     <Compile Include="Response\Get\GetUserModel.cs" />
     <Compile Include="Response\Get\Models\Badge.cs" />
@@ -81,7 +83,9 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Response\Put\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
